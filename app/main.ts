@@ -1,4 +1,4 @@
-const FALLBACK_IMAGE_URL = '../assets/fallback.svg';
+const FALLBACK_IMAGE_URL = 'assets/fallback.svg';
 
 interface Ninja {
     name: string;
@@ -40,21 +40,21 @@ function buildNinja(ninja: Ninja): string {
     if (ninja.gitHub) {
         externals += `
             <a href="https://github.com/${ninja.gitHub}">
-                <img src="../assets/github-square-brands.svg"/>
+                <img src="assets/github-square-brands.svg"/>
             </a>
         `;
     }
     if (ninja.twitter) {
         externals += `
             <a href="https://twitter.com/${ninja.twitter}">
-                <img src="../assets/twitter-square-brands.svg"/>
+                <img src="assets/twitter-square-brands.svg"/>
             </a>
         `;
     }
     if (ninja.stackOverflow) {
         externals += `
             <a href="https://stackoverflow.com/users/${ninja.stackOverflow}">
-                <img src="../assets/stack-overflow-brands.svg"/>
+                <img src="assets/stack-overflow-brands.svg"/>
             </a>
         `;
     }

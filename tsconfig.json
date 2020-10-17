@@ -1,5 +1,5 @@
 {
-    "include": ["src/main.ts"],
+    "include": ["app/main.ts"],
     "compilerOptions": {
         "alwaysStrict": true,
         "target": "ES5",
@@ -10,7 +10,6 @@
         "noImplicitThis": true,
         "noUnusedLocals": true,
         "module": "amd",
-        "lib": ["DOM", "ESNext"],
-        "outDir": "build"
+        "lib": ["DOM", "ESNext"]
     }
 }
