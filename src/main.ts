@@ -27,6 +27,14 @@ function applyTools(ninjas: Ninja[], tools: ActiveTools): Ninja[] {
     return ninjas;
 }
 
+function buildNameAndOfficesOptions(ninjas: Ninja[]): string {
+    const offices = Array.from(new Set(ninjas.map(ninja => ninja.office)))
+        .sort((a, b) => a.localeCompare(b));
+    const names = Array.from(new Set(ninjas.map(ninja => ninja.name)))
+        .sort((a, b) => a.localeCompare(b));
+    return offices.concat(names).map(o => `<option value="${o}"></option>`).join('');
+}
+
 function buildNinja(ninja: Ninja): string {
     let externals = '';
     if (ninja.gitHub) {
@@ -84,6 +92,9 @@ async function initialize(): Promise<void> {
     };
 
     const ninjas = await loadNinjas();
+    const mountDatalists = document.querySelector('#name-office-datalist');
+    mountDatalists.innerHTML = buildNameAndOfficesOptions(ninjas);
+
     const mount = document.querySelector('.ninjas');
     renderNinjas(mount, ninjas, activeTools);
 
