@@ -1,3 +1,7 @@
+html {
+    font-size: 1em;
+}
+
 body {
     background: #F7F7F7;
     display: flex;
@@ -10,6 +14,7 @@ body {
 
 h1 {
     text-align: center;
+    font-size: 2em;
 }
 
 a {
@@ -18,17 +23,17 @@ a {
 
 .tools {
     display: flex;
-    margin-bottom: 20px;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-}
-
-.tools input {
-    margin-right: 15px;
+    margin: -10px;
+    padding-bottom: 20px;
 }
 
 .tools input, .tools select {
-    height: 30px;
+    height: 2.5em;
+    margin: 10px;
+    font-size: 0.9em;
 }
 
 .ninjas {
@@ -59,10 +64,27 @@ a {
 }
 
 .ninja .info-and-externals .info {
-    font-size: 12px;
+    font-size: 0.9em;
 }
 
 .ninja .info-and-externals .externals img {
     height: 20px;
     width: 20px;
+}
+
+@media only screen and (-moz-min-device-pixel-ratio: 2), 
+       only screen and (-o-min-device-pixel-ratio: 2/1), 
+       only screen and (-webkit-min-device-pixel-ratio: 2), 
+       only screen and (min-device-pixel-ratio: 2) {
+    .ninja img {
+        width: 400px;
+        height: 500px;
+    }
+    .ninja .info-and-externals .externals img {
+        height: 40px;
+        width: 40px;
+    }
+    html {
+        font-size: 2em;
+    }
 }
