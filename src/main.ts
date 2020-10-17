@@ -9,6 +9,24 @@ interface Ninja {
     imagePortraitUrl: string | null;
 }
 
+interface ActiveTools {
+    searchNameAndOffice: string;
+    sortBy: 'name' | 'office';
+}
+
+function applyTools(ninjas: Ninja[], tools: ActiveTools): Ninja[] {
+    if (tools.searchNameAndOffice) {
+        ninjas = ninjas.filter(ninja =>
+            ninja.name.toLowerCase().includes(tools.searchNameAndOffice.toLowerCase()) ||
+                ninja.office.toLowerCase().includes(tools.searchNameAndOffice.toLowerCase()));
+    }
+    ninjas = ninjas.slice().sort((a, b) =>
+        tools.sortBy === 'name'
+            ? a.name.localeCompare(b.name)
+            : a.office.localeCompare(b.office) || a.name.localeCompare(b.name));
+    return ninjas;
+}
+
 function buildNinja(ninja: Ninja): string {
     let externals = '';
     if (ninja.gitHub) {
@@ -48,7 +66,8 @@ function buildNinja(ninja: Ninja): string {
     `;
 }
 
-function renderNinjas(mount: Element, ninjas: Ninja[]) {
+function renderNinjas(mount: Element, ninjas: Ninja[], tools: ActiveTools) {
+    ninjas = applyTools(ninjas, tools);
     mount.innerHTML = ninjas.map(buildNinja).join('');
 }
 
@@ -57,9 +76,26 @@ async function loadNinjas(): Promise<Ninja[]> {
 }
 
 async function initialize(): Promise<void> {
+    const searchNameAndOfficeInput = document.querySelector('#search-name-office') as HTMLInputElement;
+    const searchByInput = document.querySelector('#sort-by') as HTMLSelectElement;
+    let activeTools: ActiveTools = {
+        searchNameAndOffice: searchNameAndOfficeInput.value,
+        sortBy: searchByInput.value as 'name'|'office'
+    };
+
     const ninjas = await loadNinjas();
     const mount = document.querySelector('.ninjas');
-    renderNinjas(mount, ninjas);
+    renderNinjas(mount, ninjas, activeTools);
+
+    searchNameAndOfficeInput.addEventListener('input', () => {
+        activeTools = { ...activeTools, searchNameAndOffice: searchNameAndOfficeInput.value.trim() };
+        renderNinjas(mount, ninjas, activeTools);
+    });
+    
+    searchByInput.addEventListener('change', () => {
+        activeTools = { ...activeTools, sortBy: searchByInput.value as 'name'|'office' };
+        renderNinjas(mount, ninjas, activeTools);
+    });
 }
 
 initialize();

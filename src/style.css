@@ -16,6 +16,21 @@ a {
     text-decoration: none;
 }
 
+.tools {
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.tools input {
+    margin-right: 15px;
+}
+
+.tools input, .tools select {
+    height: 30px;
+}
+
 .ninjas {
     display: flex;
     flex-wrap: wrap;
