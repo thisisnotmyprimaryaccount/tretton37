@@ -60,7 +60,8 @@ function buildNinja(ninja: Ninja): string {
     }
     return `
         <div class="ninja">
-            <img src="${ninja.imagePortraitUrl ?? FALLBACK_IMAGE_URL}"/>
+            <img src="${ninja.imagePortraitUrl ?? FALLBACK_IMAGE_URL}"
+                onerror="if (this.src != '${FALLBACK_IMAGE_URL}') this.src='${FALLBACK_IMAGE_URL}'"/>
             <div class="info-and-externals">
                 <div class="info">
                     <div>${ninja.name}</div>
