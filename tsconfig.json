@@ -1,0 +1,16 @@
+{
+    "include": ["src/main.ts"],
+    "compilerOptions": {
+        "alwaysStrict": true,
+        "target": "ES5",
+        "inlineSourceMap": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        "module": "amd",
+        "lib": ["DOM", "ESNext"],
+        "outDir": "build"
+    }
+}
