@@ -11,9 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         
+      - name: Run tests
+        run: npm run test
+
       - name: Compile typescript
-        run: npx typescript --build
-        
+        run: npm run build
+
       - name: Move files to root
         run: |
           mkdir /tmp/staging

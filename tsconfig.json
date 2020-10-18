@@ -3,13 +3,13 @@
     "compilerOptions": {
         "alwaysStrict": true,
         "target": "ES5",
-        "inlineSourceMap": true,
+        "sourceMap": true,
         "noFallthroughCasesInSwitch": true,
         "noImplicitAny": true,
         "noImplicitReturns": true,
         "noImplicitThis": true,
         "noUnusedLocals": true,
-        "module": "amd",
+        "module": "commonjs",
         "lib": ["DOM", "ESNext"]
     }
 }
