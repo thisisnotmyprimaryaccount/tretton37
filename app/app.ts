@@ -20,6 +20,7 @@ export function applyTools(ninjas: Ninja[], tools: ActiveTools): Ninja[] {
             ninja.name.toLowerCase().includes(tools.searchNameAndOffice.toLowerCase()) ||
                 ninja.office.toLowerCase().includes(tools.searchNameAndOffice.toLowerCase()));
     }
+    // slice() to avoid mutating argument
     ninjas = ninjas.slice().sort((a, b) =>
         tools.sortBy === 'name'
             ? a.name.localeCompare(b.name)
